@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="signInFormGroup" (ngSubmit)="auth()">
+    <div class="formitem item__protocol">
+      <p>Protocol</p>
+      <select formControlName="protocol">
+        <option value="">HTTP</option>
+        <option value="">HTTPS</option>
+    </select>
+    </div>
+    <!-- inputs-->
+    <input formControlName="serverUrl" type="text" placeholder="my.sonicapi.server" />
+    <input formControlName="username" type="text" placeholder="username" />
+    <input formControlName="password" type="text" placeholder="password" />
+    <!-- button -->
+    <button type="submit" class="btn btn-primary">LOG IN</button>
+  </form>
+</ion-content>
