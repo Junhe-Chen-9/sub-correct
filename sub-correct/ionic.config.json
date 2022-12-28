@@ -1,0 +1,7 @@
+{
+  "name": "sub-correct",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
