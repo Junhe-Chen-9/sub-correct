@@ -10,7 +10,7 @@ import { RandomSongService } from 'src/app/service/random-song.service';
   styleUrls: ['./random.page.scss'],
 })
 export class RandomPage implements OnInit {
-
+  songs:Song[];
   authInfo:AuthInfo;
 
 
@@ -23,9 +23,12 @@ export class RandomPage implements OnInit {
     
   }
   async random(){
-    
     let response = await this.randomSongService.getRandomSongs();
     console.log(response['subsonic-response']);
+    this.songs = response['subsonic-response'].randomSongs.song;
+    console.log(this.songs);
+  }
+  async stream(){
     
   }
 
