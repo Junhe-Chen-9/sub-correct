@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { AuthRequest } from '../common/auth-request';
 import { Md5 } from 'ts-md5'
+import { AuthInfo } from '../common/auth-info';
 
 @Injectable({
   providedIn: 'root'
@@ -23,15 +24,32 @@ export class AuthService {
     let md5password = this.md5.appendStr(password+salt).end();
     console.log(salt);
     console.log(md5password);
+
     let url = `${protocol}://${serverUrl}/rest/ping?u=${username}&v=1.16.1&c=subCorrect_v.0.0.1&f=json&s=${salt}&t=${md5password}`
 
     // we need to make this promise based 
-    const promise = await this.http.get(url).subscribe(
+    const promise = this.http.get(url).subscribe(
       (res) => {
         // there is a result
         console.log(res);
+
+        // store the auth res
+        let cred = new AuthInfo();
+        cred.c = "subCorrect_v.0.0.1";
+        cred.url = serverUrl;
+        cred.u = username;
+        cred.f = "json";
+        cred.v ="1.16.1";
+        cred.s = salt;
+        cred.t = md5password.toString();
+        cred.p = protocol;
+        //console.log(md5password);
+        //console.log(cred.t);
+
+        localStorage.setItem("authInfo",JSON.stringify(cred));
+
       },
-      (error) =>{
+      (error) => {
         console.log("error!!!!!!!");
         console.log(error);
       }
