@@ -4,17 +4,17 @@ import { AuthRequest } from '../common/auth-request';
 import { Md5 } from 'ts-md5'
 import { AuthInfo } from '../common/auth-info';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  authorized:Subject<Boolean> = new BehaviorSubject<Boolean>(false);
   md5 = new Md5();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router:Router) { }
 
-  async authenticate(request:AuthRequest){
+  authenticate(request:AuthRequest){
     // get all the informations
     let serverUrl = request.serverUrl;
     let username = request.username;
@@ -47,9 +47,9 @@ export class AuthService {
         cred.p = protocol;
         //console.log(md5password);
         //console.log(cred.t);
-
         localStorage.setItem("authInfo",JSON.stringify(cred));
-        this.authorized.next(true);
+        this.router.navigateByUrl('/home');
+        
 
       },
       (error) => {
