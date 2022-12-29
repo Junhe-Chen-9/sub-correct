@@ -29,6 +29,7 @@ export class LoginPage implements OnInit {
     // this handles the login
     let request = new AuthRequest;
     request = this.signInFormGroup.value;
+    console.log(request);
     //console.log(request);
     
     // go to service to handle the authentication

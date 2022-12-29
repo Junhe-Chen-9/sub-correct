@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content>
+  <!--
   <form [formGroup]="signInFormGroup" (ngSubmit)="auth()">
     <div class="formitem item__protocol">
       <p>Protocol</p>
@@ -13,7 +14,9 @@
         <option value="https">HTTPS</option>
       </select>
     </div>
+    -->
     <!-- inputs-->
+     <!--
     <input
       formControlName="serverUrl"
       type="text"
@@ -21,9 +24,13 @@
     />
     <input formControlName="username" type="text" placeholder="username" />
     <input formControlName="password" type="password" placeholder="password" />
+    -->
     <!-- button -->
+    <!--
     <button type="submit" class="btn btn-primary">LOG IN</button>
+    
   </form>
+  -->
 
   <ion-grid>
     <ion-row class="ion-justify-content-center ion-text-center">
@@ -32,7 +39,7 @@
         <form [formGroup]="signInFormGroup" (ngSubmit)="auth()">
           <ion-list>
             <ion-item>
-              <ion-select placeholder="Select Protocol">
+              <ion-select placeholder="Select Protocol" formControlName="protocol">
                 <ion-select-option value="http">HTTP</ion-select-option>
                 <ion-select-option value="https">HTTPS</ion-select-option>
               </ion-select>
