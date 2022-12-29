@@ -1,0 +1,22 @@
+export class Song {
+    id:String;
+    parent:String;
+    isDir:Boolean;
+    title:String;
+    album:String;
+    artist:String;
+    track:Number;
+    year:Number;
+    coverArt:String;
+    size:Number;
+    contentType:String;
+    suffix:String;
+    duration:Number;
+    bitRate:Number;
+    path:String;
+    created:Date;
+    albumId:String;
+    artistId:String;
+    type:String;
+    isVideo:Boolean;
+}

@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./page/login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'random',
+    loadChildren: () => import('./page/random/random.module').then( m => m.RandomPageModule)
+  },
 ];
 
 @NgModule({
