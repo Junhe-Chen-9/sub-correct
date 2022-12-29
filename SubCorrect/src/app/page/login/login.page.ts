@@ -11,10 +11,13 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class LoginPage implements OnInit {
   signInFormGroup: FormGroup;
+  loggedIn:Boolean;
 
   constructor(private formBuilder:FormBuilder, private authService:AuthService) { }
 
   ngOnInit() {
+    console.log(this.loggedIn);
+    
     this.signInFormGroup = this.formBuilder.group({
       protocol: new FormControl(''),
       username: new FormControl(''),
@@ -30,6 +33,8 @@ export class LoginPage implements OnInit {
     
     // go to service to handle the authentication
     this.authService.authenticate(request);
+
   }
+
 
 }

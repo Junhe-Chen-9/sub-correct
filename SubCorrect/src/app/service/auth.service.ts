@@ -3,11 +3,13 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { AuthRequest } from '../common/auth-request';
 import { Md5 } from 'ts-md5'
 import { AuthInfo } from '../common/auth-info';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  authorized:Subject<Boolean> = new BehaviorSubject<Boolean>(false);
   md5 = new Md5();
 
   constructor(private http: HttpClient) { }
@@ -47,6 +49,7 @@ export class AuthService {
         //console.log(cred.t);
 
         localStorage.setItem("authInfo",JSON.stringify(cred));
+        this.authorized.next(true);
 
       },
       (error) => {
