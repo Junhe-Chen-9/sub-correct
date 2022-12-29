@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Welcome, Please Log In</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,13 +11,64 @@
       <select formControlName="protocol">
         <option value="http">HTTP</option>
         <option value="https">HTTPS</option>
-    </select>
+      </select>
     </div>
     <!-- inputs-->
-    <input formControlName="serverUrl" type="text" placeholder="my.sonicapi.server" />
+    <input
+      formControlName="serverUrl"
+      type="text"
+      placeholder="my.sonicapi.server"
+    />
     <input formControlName="username" type="text" placeholder="username" />
     <input formControlName="password" type="password" placeholder="password" />
     <!-- button -->
     <button type="submit" class="btn btn-primary">LOG IN</button>
   </form>
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-text-center">
+      <ion-col>
+        <h1>Login</h1>
+        <form [formGroup]="signInFormGroup" (ngSubmit)="auth()">
+          <ion-list>
+            <ion-item>
+              <ion-select placeholder="Select Protocol">
+                <ion-select-option value="http">HTTP</ion-select-option>
+                <ion-select-option value="https">HTTPS</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>Server URL</ion-label>
+              <ion-input
+                formControlName="serverUrl"
+                type="text"
+                placeholder="my.sonicapi.server"
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Username</ion-label>
+              <ion-input
+                formControlName="username"
+                type="text"
+                placeholder="Username"
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Password</ion-label>
+              <ion-input
+                formControlName="password"
+                type="password"
+                placeholder="Password"
+              ></ion-input>
+            </ion-item>
+          </ion-list>
+          <ion-button
+            type="submit"
+            class="ion-padding-horizontal ion-margin-top"
+            >Sign In</ion-button
+          >
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
