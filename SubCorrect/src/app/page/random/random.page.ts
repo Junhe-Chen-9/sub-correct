@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthInfo } from 'src/app/common/auth-info';
 import { Song } from 'src/app/common/song';
+import { Track } from 'src/app/common/track';
 import { RandomSongService } from 'src/app/service/random-song.service';
+import { Howl } from 'howler';
+import { SongsService } from 'src/app/service/songs.service';
 
 @Component({
   selector: 'app-random',
@@ -13,8 +16,10 @@ export class RandomPage implements OnInit {
   songs:Song[];
   authInfo:AuthInfo;
 
+  
+  
 
-  constructor(private router:Router,private randomSongService:RandomSongService) {}
+  constructor(private router:Router,private randomSongService:RandomSongService,private songsService:SongsService) {}
   ngOnInit(): void {
     this.authInfo = JSON.parse(localStorage.getItem("authInfo"));
     if(this.authInfo == null){
@@ -30,6 +35,35 @@ export class RandomPage implements OnInit {
   }
   async stream(){
     
+  }
+
+
+  // implements the music player 
+
+  
+  activeSong: Song = null;
+  player : Howl = null;
+  start(song: Song){
+    this.player = new Howl({
+      src : [this.songsService.streamSong(song.id)]
+    });
+    this.player.play();
+
+  }
+  togglePlayer( pause) {
+
+  }
+  next(){
+
+  }
+  prev(){
+
+  }
+  seek(){
+
+  }
+  updateProgress(){
+
   }
 
 }

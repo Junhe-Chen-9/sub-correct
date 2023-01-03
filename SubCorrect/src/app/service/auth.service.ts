@@ -48,6 +48,7 @@ export class AuthService {
         //console.log(md5password);
         //console.log(cred.t);
         localStorage.setItem("authInfo",JSON.stringify(cred));
+        localStorage.setItem("token",`ping?u=${username}&v=1.16.1&c=subCorrect_v.0.0.1&f=json&s=${salt}&t=${md5password}`);
         this.router.navigateByUrl('/home');
         
 

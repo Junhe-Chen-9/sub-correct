@@ -7,4 +7,13 @@
 <ion-content>
   <button (click)="random()">Random</button>
   <button (click)="stream()">Stream</button>
+  <ion-list>
+    <ion-item *ngFor="let song of songs" (click)="start(song)">
+      <ion-label>
+        {{ song.album }}
+        {{ song.artist }}
+        {{ song.title }}
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
