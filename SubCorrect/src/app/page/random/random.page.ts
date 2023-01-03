@@ -44,9 +44,20 @@ export class RandomPage implements OnInit {
   activeSong: Song = null;
   player : Howl = null;
   start(song: Song){
+    var blob = null;
+    this.songsService.streamSong(song.id).then(
+      (data) => {
+        blob = new Blob([data]);
+      }
+    ).catch((error) =>{
+
+      console.log(error)}
+      );
+
     this.player = new Howl({
-      src : [this.songsService.streamSong(song.id)]
+      src : blob
     });
+    console.log(blob);
     this.player.play();
 
   }
